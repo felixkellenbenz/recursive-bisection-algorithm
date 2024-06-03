@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbpalgolib.a CMakeFiles/bpalgolib.dir/graph.cpp.o CMakeFiles/bpalgolib.dir/parser.cpp.o CMakeFiles/bpalgolib.dir/partitioner.cpp.o CMakeFiles/bpalgolib.dir/algorithm.cpp.o
+/usr/bin/ranlib libbpalgolib.a

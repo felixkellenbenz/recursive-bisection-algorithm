@@ -1,0 +1,1 @@
+/usr/local/bin/clang++ -g CMakeFiles/bpalgo.dir/main.cpp.o CMakeFiles/bpalgo.dir/graph.cpp.o CMakeFiles/bpalgo.dir/parser.cpp.o CMakeFiles/bpalgo.dir/partitioner.cpp.o CMakeFiles/bpalgo.dir/algorithm.cpp.o -o bpalgo  libbpalgolib.a 

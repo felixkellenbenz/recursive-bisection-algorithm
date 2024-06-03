@@ -1,0 +1,5 @@
+if(EXISTS "/home/felix/Documents/University/Semester 4/Proseminar/Code/build/test/bpalgotests[1]_tests.cmake")
+  include("/home/felix/Documents/University/Semester 4/Proseminar/Code/build/test/bpalgotests[1]_tests.cmake")
+else()
+  add_test(bpalgotests_NOT_BUILT bpalgotests_NOT_BUILT)
+endif()

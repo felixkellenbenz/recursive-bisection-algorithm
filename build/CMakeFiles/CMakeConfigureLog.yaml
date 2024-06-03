@@ -1,0 +1,469 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Linux - 6.8.9-300.fc40.x86_64 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/local/bin/clang 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is Clang, found in:
+        /home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/3.28.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/local/bin/clang++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is Clang, found in:
+        /home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/3.28.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh"
+      binary: "/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS-NOTFOUND"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c00ff/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_c00ff.dir/build.make CMakeFiles/cmTC_c00ff.dir/build
+        gmake[1]: Entering directory '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh'
+        Building C object CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o
+        /usr/local/bin/clang   -v -MD -MT CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        clang version 18.1.4
+        Target: x86_64-unknown-linux-gnu
+        Thread model: posix
+        InstalledDir: /usr/local/bin
+        Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14
+        Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14
+        Candidate multilib: .;@m64
+        Candidate multilib: 32;@m32
+        Selected multilib: .;@m64
+         (in-process)
+         "/usr/local/clang/bin/clang-18" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb "-fdebug-compilation-dir=/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh" -v "-fcoverage-compilation-dir=/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh" -resource-dir /usr/local/clang/lib/clang/18 -dependency-file CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/local/clang/lib/clang/18/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 18.1.4 based upon LLVM 18.1.4 default target x86_64-unknown-linux-gnu
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/14/../../../../x86_64-redhat-linux/include"
+        ignoring nonexistent directory "/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/local/clang/lib/clang/18/include
+         /usr/local/include
+         /usr/include
+        End of search list.
+        Linking C executable cmTC_c00ff
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c00ff.dir/link.txt --verbose=1
+        /usr/local/bin/clang  -v CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -o cmTC_c00ff 
+        clang version 18.1.4
+        Target: x86_64-unknown-linux-gnu
+        Thread model: posix
+        InstalledDir: /usr/local/bin
+        Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14
+        Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14
+        Candidate multilib: .;@m64
+        Candidate multilib: 32;@m32
+        Selected multilib: .;@m64
+         "/usr/bin/ld" --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_c00ff /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o -L/usr/lib/gcc/x86_64-redhat-linux/14 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o
+        gmake[1]: Leaving directory '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/local/clang/lib/clang/18/include]
+          add: [/usr/local/include]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/local/clang/lib/clang/18/include] ==> [/usr/local/clang/lib/clang/18/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/local/clang/lib/clang/18/include;/usr/local/include;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c00ff/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_c00ff.dir/build.make CMakeFiles/cmTC_c00ff.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh']
+        ignore line: [Building C object CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/local/bin/clang   -v -MD -MT CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang version 18.1.4]
+        ignore line: [Target: x86_64-unknown-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /usr/local/bin]
+        ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14]
+        ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Candidate multilib: 32]
+        ignore line: [@m32]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        ignore line: [ (in-process)]
+        ignore line: [ "/usr/local/clang/bin/clang-18" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb "-fdebug-compilation-dir=/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh" -v "-fcoverage-compilation-dir=/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-oP6TFh" -resource-dir /usr/local/clang/lib/clang/18 -dependency-file CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/local/clang/lib/clang/18/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 18.1.4 based upon LLVM 18.1.4 default target x86_64-unknown-linux-gnu]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/14/../../../../x86_64-redhat-linux/include"]
+        ignore line: [ignoring nonexistent directory "/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/local/clang/lib/clang/18/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Linking C executable cmTC_c00ff]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c00ff.dir/link.txt --verbose=1]
+        ignore line: [/usr/local/bin/clang  -v CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -o cmTC_c00ff ]
+        ignore line: [clang version 18.1.4]
+        ignore line: [Target: x86_64-unknown-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /usr/local/bin]
+        ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14]
+        ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Candidate multilib: 32]
+        ignore line: [@m32]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        link line: [ "/usr/bin/ld" --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_c00ff /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o -L/usr/lib/gcc/x86_64-redhat-linux/14 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o]
+          arg [/usr/bin/ld] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_c00ff] ==> ignore
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/14] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/14]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/lib] ==> dir [/lib]
+          arg [-L/usr/lib] ==> dir [/usr/lib]
+          arg [CMakeFiles/cmTC_c00ff.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--no-as-needed] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--no-as-needed] ==> ignore
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o] ==> [/usr/lib64/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o] ==> [/usr/lib64/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o] ==> [/usr/lib64/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/14] ==> [/usr/lib/gcc/x86_64-redhat-linux/14]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib] ==> [/lib]
+        collapse library dir [/usr/lib] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/lib64/Scrt1.o;/usr/lib64/crti.o;/usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o;/usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o;/usr/lib64/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/14;/usr/lib64;/lib64;/lib;/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU"
+      binary: "/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS-NOTFOUND"
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b66d6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b66d6.dir/build.make CMakeFiles/cmTC_b66d6.dir/build
+        gmake[1]: Entering directory '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU'
+        Building CXX object CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/local/bin/clang++   -v -MD -MT CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        clang version 18.1.4
+        Target: x86_64-unknown-linux-gnu
+        Thread model: posix
+        InstalledDir: /usr/local/bin
+        Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14
+        Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14
+        Candidate multilib: .;@m64
+        Candidate multilib: 32;@m32
+        Selected multilib: .;@m64
+         (in-process)
+         "/usr/local/clang/bin/clang-18" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb "-fdebug-compilation-dir=/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU" -v "-fcoverage-compilation-dir=/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU" -resource-dir /usr/local/clang/lib/clang/18 -dependency-file CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14 -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/x86_64-redhat-linux -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/backward -internal-isystem /usr/local/clang/lib/clang/18/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 18.1.4 based upon LLVM 18.1.4 default target x86_64-unknown-linux-gnu
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/14/../../../../x86_64-redhat-linux/include"
+        ignoring nonexistent directory "/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14
+         /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/x86_64-redhat-linux
+         /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/backward
+         /usr/local/clang/lib/clang/18/include
+         /usr/local/include
+         /usr/include
+        End of search list.
+        Linking CXX executable cmTC_b66d6
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b66d6.dir/link.txt --verbose=1
+        /usr/local/bin/clang++  -v CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_b66d6 
+        clang version 18.1.4
+        Target: x86_64-unknown-linux-gnu
+        Thread model: posix
+        InstalledDir: /usr/local/bin
+        Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14
+        Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14
+        Candidate multilib: .;@m64
+        Candidate multilib: 32;@m32
+        Selected multilib: .;@m64
+         "/usr/bin/ld" --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_b66d6 /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o -L/usr/lib/gcc/x86_64-redhat-linux/14 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o
+        gmake[1]: Leaving directory '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14]
+          add: [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/x86_64-redhat-linux]
+          add: [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/backward]
+          add: [/usr/local/clang/lib/clang/18/include]
+          add: [/usr/local/include]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14] ==> [/usr/include/c++/14]
+        collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/x86_64-redhat-linux] ==> [/usr/include/c++/14/x86_64-redhat-linux]
+        collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/backward] ==> [/usr/include/c++/14/backward]
+        collapse include dir [/usr/local/clang/lib/clang/18/include] ==> [/usr/local/clang/lib/clang/18/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/14;/usr/include/c++/14/x86_64-redhat-linux;/usr/include/c++/14/backward;/usr/local/clang/lib/clang/18/include;/usr/local/include;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b66d6/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_b66d6.dir/build.make CMakeFiles/cmTC_b66d6.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU']
+        ignore line: [Building CXX object CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/local/bin/clang++   -v -MD -MT CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang version 18.1.4]
+        ignore line: [Target: x86_64-unknown-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /usr/local/bin]
+        ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14]
+        ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Candidate multilib: 32]
+        ignore line: [@m32]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        ignore line: [ (in-process)]
+        ignore line: [ "/usr/local/clang/bin/clang-18" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb "-fdebug-compilation-dir=/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU" -v "-fcoverage-compilation-dir=/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-lXu8LU" -resource-dir /usr/local/clang/lib/clang/18 -dependency-file CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14 -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/x86_64-redhat-linux -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/backward -internal-isystem /usr/local/clang/lib/clang/18/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/14/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 18.1.4 based upon LLVM 18.1.4 default target x86_64-unknown-linux-gnu]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/14/../../../../x86_64-redhat-linux/include"]
+        ignore line: [ignoring nonexistent directory "/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/x86_64-redhat-linux]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/14/../../../../include/c++/14/backward]
+        ignore line: [ /usr/local/clang/lib/clang/18/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Linking CXX executable cmTC_b66d6]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b66d6.dir/link.txt --verbose=1]
+        ignore line: [/usr/local/bin/clang++  -v CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_b66d6 ]
+        ignore line: [clang version 18.1.4]
+        ignore line: [Target: x86_64-unknown-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /usr/local/bin]
+        ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14]
+        ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/14]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Candidate multilib: 32]
+        ignore line: [@m32]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        link line: [ "/usr/bin/ld" --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_b66d6 /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o -L/usr/lib/gcc/x86_64-redhat-linux/14 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o]
+          arg [/usr/bin/ld] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_b66d6] ==> ignore
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/14] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/14]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/lib] ==> dir [/lib]
+          arg [-L/usr/lib] ==> dir [/usr/lib]
+          arg [CMakeFiles/cmTC_b66d6.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/Scrt1.o] ==> [/usr/lib64/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o] ==> [/usr/lib64/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o] ==> [/usr/lib64/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/14] ==> [/usr/lib/gcc/x86_64-redhat-linux/14]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib] ==> [/lib]
+        collapse library dir [/usr/lib] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib64/Scrt1.o;/usr/lib64/crti.o;/usr/lib/gcc/x86_64-redhat-linux/14/crtbeginS.o;/usr/lib/gcc/x86_64-redhat-linux/14/crtendS.o;/usr/lib64/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/14;/usr/lib64;/lib64;/lib;/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "external/googletest/googletest/cmake/internal_utils.cmake:66 (find_package)"
+      - "external/googletest/googletest/CMakeLists.txt:83 (config_compiler_and_linker)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-IPJ7kv"
+      binary: "/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-IPJ7kv"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS-NOTFOUND"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-IPJ7kv'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_71698/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_71698.dir/build.make CMakeFiles/cmTC_71698.dir/build
+        gmake[1]: Entering directory '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-IPJ7kv'
+        Building C object CMakeFiles/cmTC_71698.dir/src.c.o
+        /usr/local/bin/clang -DCMAKE_HAVE_LIBC_PTHREAD   -MD -MT CMakeFiles/cmTC_71698.dir/src.c.o -MF CMakeFiles/cmTC_71698.dir/src.c.o.d -o CMakeFiles/cmTC_71698.dir/src.c.o -c "/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-IPJ7kv/src.c"
+        Linking C executable cmTC_71698
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_71698.dir/link.txt --verbose=1
+        /usr/local/bin/clang CMakeFiles/cmTC_71698.dir/src.c.o -o cmTC_71698 
+        gmake[1]: Leaving directory '/home/felix/Documents/University/Semester 4/Proseminar/Code/build/CMakeFiles/CMakeScratch/TryCompile-IPJ7kv'
+        
+      exitCode: 0
+...
