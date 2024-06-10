@@ -1,5 +1,4 @@
 if (BUILD_TESTING)
-  
   add_executable(
     bpalgotests
     graph_tests.cpp

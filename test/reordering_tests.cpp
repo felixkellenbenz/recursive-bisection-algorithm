@@ -4,14 +4,16 @@
 
 #include "algorithm.hpp"
 #include "graph.hpp"
+#include "logger.hpp"
 #include "parser.hpp"
 #include "partitioner.hpp"
 
 
 TEST(ReorderTests, ReorderSample1) {
-  compress::GraphParser parser('#', ' ');
-  compress::Graph sampleGraph1 = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_1.txt");
-  compress::Reorderer reorder(std::make_unique<compress::RandomBiPartioner>()); 
+  compress::GraphParser parser('#', '\t');
+  compress::Graph sampleGraph1 = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_2.txt");
+  compress::CLILogger logger;
+  compress::Reorderer reorder(std::make_unique<compress::RandomBiPartioner>(), logger); 
 
   auto ToVertexSet = [](const std::vector<compress::Vertex> vertexVector) {
     compress::VertexSet newVertexSet;

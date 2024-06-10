@@ -1,21 +1,23 @@
 #include <algorithm>
 #include <chrono>
 #include <cmath>
-#include <cstdint>
 #include <cstdlib>
 #include <iostream>
 #include <memory>
 #include <string>
+#include <unordered_map>
 #include <unordered_set>
 #include <vector>
 
+#include "algorithm.hpp"
 #include "graph.hpp"
+#include "logger.hpp"
 #include "parser.hpp"
 #include "partitioner.hpp"
 
-// How to transform graph ?
+namespace compress {
+namespace mla {
 
- 
 std::vector<std::vector<int>> findCombos(int start) {
   std::vector<std::vector<int>> combinations;
   std::string s;
@@ -78,13 +80,76 @@ compress::Order forceOrder(const compress::Graph& toOrder, bool islog = false) {
   return candidate;
 }
 
+} // namespace mla
+
+double calculateBiMLogACost(Order vertexOrder, const Graph& toCalculateFor) {
+  std::unordered_map<Vertex, std::vector<std::pair<Vertex, long>>> adjacencyListWithOrder; 
+
+  for (auto& [vertex, neighbours] : toCalculateFor) {
+    adjacencyListWithOrder[vertex] = std::vector<std::pair<compress::Vertex, long>>();
+    for (auto& neihgbour : neighbours) {
+      adjacencyListWithOrder[vertex].push_back({neihgbour, vertexOrder[neihgbour]});
+    } 
+  } 
+
+  double BiMLogACost = 0;
+  long gaps = 0;
+
+  for (auto& [vertex, neighbours] : adjacencyListWithOrder) {
+    std::sort(neighbours.begin(), neighbours.end(), [](std::pair<compress::Vertex, long>& lhs, std::pair<compress::Vertex, long>& rhs) {
+      return lhs.second < rhs.second;
+    });
+
+    for (long k = 0; k < neighbours.size() - 1; k++) {
+      gaps++;
+      BiMLogACost += std::floor(std::log2(neighbours[k + 1].second - neighbours[k].second)) + 1; 
+     }  
+  }
+
+  return BiMLogACost / (gaps + adjacencyListWithOrder.size());
+}
+
+bool verifyOrder(Order vertexOrder) {
+  std::unordered_set<long> seenOrderValues; 
+  std::vector<long> duplicates;
+  bool valid = true;;
+   
+  for (auto& [vertex, orderVal] : vertexOrder) {
+    if (seenOrderValues.contains(orderVal)) {
+      duplicates.push_back(orderVal);
+      valid = false; 
+    }
+
+    seenOrderValues.insert(orderVal);
+  }
+
+  return valid;
+}
+
+} // namespace compress
+
 int main() {
-  compress::GraphParser parser('#', ' ');
+  compress::CLILogger logger;
+  compress::GraphParser parser('#', '\t');
 
   auto begin = std::chrono::steady_clock::now();
-  compress::Graph graph = parser.parseFromFile("../test.txt");
+  compress::Graph graph = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_2.txt");
   auto end = std::chrono::steady_clock::now();
 
-  std::cout << "Number of Veticies: " << graph.order() << " Number of Edges: " << graph.size() << "\n";
-  auto partitioner = std::make_unique<compress::RandomBiPartioner>();
+  auto ToVertexSet = [&]() {
+    compress::VertexSet vertexSet;
+
+    for (auto& [vertex, neighbours] : graph) 
+      vertexSet.insert(vertex);
+    
+    return vertexSet;
+  };
+
+  compress::QDGraph qd(ToVertexSet(), ToVertexSet(), graph);
+  compress::Reorderer reorderer(std::make_unique<compress::RandomBiPartioner>(), logger);
+  auto vertexOrder = reorderer.reorder(qd, 1, qd.getDataVertices().size());
+
+  // how to compute compression cost 
+  std::cout << "Order is valid: " << compress::verifyOrder(vertexOrder) << '\n';
+  std::cout << "BiMLogACost: " << compress::calculateBiMLogACost(vertexOrder, qd) << '\n';
 }
