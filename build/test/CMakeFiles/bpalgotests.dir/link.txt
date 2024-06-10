@@ -1,1 +1,0 @@
-/usr/local/bin/clang++ -g CMakeFiles/bpalgotests.dir/graph_tests.cpp.o CMakeFiles/bpalgotests.dir/reordering_tests.cpp.o -o bpalgotests  ../lib/libgtest_main.a ../src/libbpalgolib.a ../lib/libgtest.a 
