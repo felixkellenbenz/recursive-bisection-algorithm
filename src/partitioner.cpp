@@ -1,10 +1,9 @@
-#include "partitioner.hpp"
-
 #include <algorithm>
 #include <cmath>
 #include <random>
 #include <vector>
 
+#include "partitioner.hpp"
 #include "graph.hpp"
 
 namespace compress {
@@ -21,8 +20,7 @@ std::pair<VertexSet, VertexSet> RandomBiPartioner::bisect(
   auto AsVertexVector = [](VertexSet&& toVector) {
     std::vector<Vertex> vertexVector;
 
-    for (auto& vertex : toVector)
-      vertexVector.push_back(vertex);
+    for (auto& vertex : toVector) vertexVector.push_back(vertex);
 
     return vertexVector;
   };

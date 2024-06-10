@@ -1,9 +1,9 @@
-#include "graph.hpp"
-
 #include <climits>
 #include <sstream>
 #include <utility>
 #include <vector>
+
+#include "graph.hpp"
 
 namespace compress {
 
@@ -63,15 +63,18 @@ std::vector<Vertex> Graph::vertices() const {
   return vertecies;
 }
 
-QDGraph::QDGraph(VertexSet _queryVertices, VertexSet _dataVertices, const Graph& original)
-    : Graph(), queryVertices(std::move(_queryVertices)), dataVertices(std::move(_dataVertices)) {
+QDGraph::QDGraph(VertexSet _queryVertices, VertexSet _dataVertices,
+                 const Graph& original)
+    : Graph(),
+      queryVertices(std::move(_queryVertices)),
+      dataVertices(std::move(_dataVertices)) {
   for (auto& [vertex, neigbours] : original) {
     for (auto& neigbour : neigbours) {
       if (dataVertices.contains(neigbour) && queryVertices.contains(neigbour) &&
-          dataVertices.contains(vertex) && queryVertices.contains(vertex) && 
+          dataVertices.contains(vertex) && queryVertices.contains(vertex) &&
           !hasEdge({vertex, neigbour})) {
         adjacencyList[vertex].push_back(neigbour);
-        adjacencyList[neigbour].push_back(vertex);        
+        adjacencyList[neigbour].push_back(vertex);
         numberOfEdges += 1;
       }
     }

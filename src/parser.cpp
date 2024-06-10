@@ -1,11 +1,10 @@
-#include "parser.hpp"
-
 #include <cctype>
 #include <filesystem>
 #include <fstream>
 #include <string>
 
 #include "exception.hpp"
+#include "parser.hpp"
 #include "graph.hpp"
 
 namespace compress {

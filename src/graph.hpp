@@ -48,15 +48,18 @@ class QDGraph : public Graph {
 
  public:
   QDGraph() : Graph(), queryVertices(), dataVertices() {}
-  QDGraph(VertexSet queryVertices, VertexSet dataVertices, const Graph& original);
+  QDGraph(VertexSet queryVertices, VertexSet dataVertices,
+          const Graph& original);
 
-  std::size_t order() const override { return dataVertices.size() + queryVertices.size();}
+  std::size_t order() const override {
+    return dataVertices.size() + queryVertices.size();
+  }
   std::size_t size() const override { return numberOfEdges * 2; }
 
   std::size_t dataOrder() const { return dataVertices.size(); }
   std::size_t queryOrder() const { return queryVertices.size(); }
 
-  VertexSet getDataVertices() const {return dataVertices; }
-  VertexSet getQueryVertices() const {return queryVertices;};
+  VertexSet getDataVertices() const { return dataVertices; }
+  VertexSet getQueryVertices() const { return queryVertices; };
 };
 }  // namespace compress

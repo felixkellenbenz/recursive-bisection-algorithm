@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdexcept>
+
 namespace compress {
 
 class ParsingException : public std::runtime_error {

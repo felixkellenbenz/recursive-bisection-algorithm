@@ -18,11 +18,4 @@ class RandomBiPartioner : public BiPartitioner {
   std::pair<VertexSet, VertexSet> bisect(const QDGraph& toBisect) override;
 };
 
-class KaHiPartitioner : public BiPartitioner {
- private:
- public:
-  KaHiPartitioner();
-  std::pair<VertexSet, VertexSet> bisect(const QDGraph& toBisect) override;
-};
-
 }  // namespace compress

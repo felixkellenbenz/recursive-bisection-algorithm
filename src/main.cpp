@@ -28,8 +28,7 @@ std::vector<std::vector<int>> findCombos(int start) {
 
   do {
     std::vector<int> nextPermutation;
-    for (char c : s)
-      nextPermutation.push_back(c - 48); 
+    for (char c : s) nextPermutation.push_back(c - 48);
 
     combinations.push_back(nextPermutation);
   } while (std::next_permutation(s.begin(), s.end()));
@@ -60,10 +59,13 @@ compress::Order forceOrder(const compress::Graph& toOrder, bool islog = false) {
             seen = true;
             break;
           }
-        } 
+        }
 
-        double intermediateResLog = std::log2(std::abs(nextOrder[vertex] - nextOrder[neigbour])) + 1;
-        double intermediateRes = islog ? intermediateResLog : std::abs(nextOrder[vertex] - nextOrder[neigbour]); 
+        double intermediateResLog =
+            std::log2(std::abs(nextOrder[vertex] - nextOrder[neigbour])) + 1;
+        double intermediateRes =
+            islog ? intermediateResLog
+                  : std::abs(nextOrder[vertex] - nextOrder[neigbour]);
         sum += !seen ? intermediateRes : 0;
 
         if (!seen) {
@@ -80,44 +82,52 @@ compress::Order forceOrder(const compress::Graph& toOrder, bool islog = false) {
   return candidate;
 }
 
-} // namespace mla
+}  // namespace mla
 
 double calculateBiMLogACost(Order vertexOrder, const Graph& toCalculateFor) {
-  std::unordered_map<Vertex, std::vector<std::pair<Vertex, long>>> adjacencyListWithOrder; 
+  std::unordered_map<Vertex, std::vector<std::pair<Vertex, long>>>
+      adjacencyListWithOrder;
 
   for (auto& [vertex, neighbours] : toCalculateFor) {
-    adjacencyListWithOrder[vertex] = std::vector<std::pair<compress::Vertex, long>>();
+    adjacencyListWithOrder[vertex] =
+        std::vector<std::pair<compress::Vertex, long>>();
     for (auto& neihgbour : neighbours) {
-      adjacencyListWithOrder[vertex].push_back({neihgbour, vertexOrder[neihgbour]});
-    } 
-  } 
+      adjacencyListWithOrder[vertex].push_back(
+          {neihgbour, vertexOrder[neihgbour]});
+    }
+  }
 
   double BiMLogACost = 0;
   long gaps = 0;
 
   for (auto& [vertex, neighbours] : adjacencyListWithOrder) {
-    std::sort(neighbours.begin(), neighbours.end(), [](std::pair<compress::Vertex, long>& lhs, std::pair<compress::Vertex, long>& rhs) {
-      return lhs.second < rhs.second;
-    });
+    std::sort(neighbours.begin(), neighbours.end(),
+              [](std::pair<compress::Vertex, long>& lhs,
+                 std::pair<compress::Vertex, long>& rhs) {
+                return lhs.second < rhs.second;
+              });
 
     for (long k = 0; k < neighbours.size() - 1; k++) {
       gaps++;
-      BiMLogACost += std::floor(std::log2(neighbours[k + 1].second - neighbours[k].second)) + 1; 
-     }  
+      BiMLogACost += std::floor(std::log2(neighbours[k + 1].second -
+                                          neighbours[k].second)) +
+                     1;
+    }
   }
 
   return BiMLogACost / (gaps + adjacencyListWithOrder.size());
 }
 
 bool verifyOrder(Order vertexOrder) {
-  std::unordered_set<long> seenOrderValues; 
+  std::unordered_set<long> seenOrderValues;
   std::vector<long> duplicates;
-  bool valid = true;;
-   
+  bool valid = true;
+  ;
+
   for (auto& [vertex, orderVal] : vertexOrder) {
     if (seenOrderValues.contains(orderVal)) {
       duplicates.push_back(orderVal);
-      valid = false; 
+      valid = false;
     }
 
     seenOrderValues.insert(orderVal);
@@ -126,30 +136,33 @@ bool verifyOrder(Order vertexOrder) {
   return valid;
 }
 
-} // namespace compress
+}  // namespace compress
 
 int main() {
   compress::CLILogger logger;
   compress::GraphParser parser('#', '\t');
 
   auto begin = std::chrono::steady_clock::now();
-  compress::Graph graph = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_2.txt");
+  compress::Graph graph = parser.parseFromFile(
+      "/home/felix/Documents/University/Semester "
+      "4/Proseminar/Code/test/sample_graph_2.txt");
   auto end = std::chrono::steady_clock::now();
 
   auto ToVertexSet = [&]() {
     compress::VertexSet vertexSet;
 
-    for (auto& [vertex, neighbours] : graph) 
-      vertexSet.insert(vertex);
-    
+    for (auto& [vertex, neighbours] : graph) vertexSet.insert(vertex);
+
     return vertexSet;
   };
 
   compress::QDGraph qd(ToVertexSet(), ToVertexSet(), graph);
-  compress::Reorderer reorderer(std::make_unique<compress::RandomBiPartioner>(), logger);
+  compress::Reorderer reorderer(std::make_unique<compress::RandomBiPartioner>(),
+                                logger);
   auto vertexOrder = reorderer.reorder(qd, 1, qd.getDataVertices().size());
 
-  // how to compute compression cost 
+  // how to compute compression cost
   std::cout << "Order is valid: " << compress::verifyOrder(vertexOrder) << '\n';
-  std::cout << "BiMLogACost: " << compress::calculateBiMLogACost(vertexOrder, qd) << '\n';
+  std::cout << "BiMLogACost: "
+            << compress::calculateBiMLogACost(vertexOrder, qd) << '\n';
 }

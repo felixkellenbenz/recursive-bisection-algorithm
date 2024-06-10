@@ -1,10 +1,11 @@
 #pragma once
 
 #include <memory>
+#include <utility>
 
 #include "graph.hpp"
-#include "partitioner.hpp"
 #include "logger.hpp"
+#include "partitioner.hpp"
 
 namespace compress {
 
@@ -15,19 +16,18 @@ class Reorderer {
   bool loggingEnabeled;
 
  public:
-  Reorderer(std::unique_ptr<BiPartitioner> _partitionStrategy, Logger& _actionLogger) : 
-    partitionStrategy(std::move(_partitionStrategy)), actionLogger(_actionLogger),
-    loggingEnabeled(true)  {}
+  Reorderer(std::unique_ptr<BiPartitioner> _partitionStrategy,
+            Logger& _actionLogger)
+      : partitionStrategy(std::move(_partitionStrategy)),
+        actionLogger(_actionLogger),
+        loggingEnabeled(true) {}
 
   Order reorder(const QDGraph& toReorder, long begin, long end);
-  std::pair<VertexSet, VertexSet> bisect(VertexSet first, VertexSet second, const QDGraph& toReorder);
+  std::pair<VertexSet, VertexSet> bisect(std::pair<VertexSet, VertexSet>,
+                                         const QDGraph& toReorder);
 
-  void enableLogging() {
-    loggingEnabeled = true;
-  }
-  
-  void disableLogging() {
-    loggingEnabeled = false; 
-  }
+  void enableLogging() { loggingEnabeled = true; }
+
+  void disableLogging() { loggingEnabeled = false; }
 };
 }  // namespace compress
