@@ -4,7 +4,7 @@
 
 TEST(GraphTests, parseSampleGraph1) {
   compress::GraphParser parser('#', ' ');
-  compress::Graph sampleGraph1 = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_1.txt");
+  compress::Graph sampleGraph1 = parser.parseFromFile("../graphs/sample_graph_1.txt");
 
   ASSERT_EQ(sampleGraph1.order(), 7L);
   ASSERT_EQ(sampleGraph1.size(), 9);
@@ -12,7 +12,7 @@ TEST(GraphTests, parseSampleGraph1) {
 
 TEST(GraphTests, parseSampleGraph2) {
   compress::GraphParser parser;
-  compress::Graph sampleGraph2 = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_2.txt");
+  compress::Graph sampleGraph2 = parser.parseFromFile("../graphs/sample_graph_2.txt");
 
   ASSERT_EQ(sampleGraph2.order(), 36692L);
   ASSERT_EQ(sampleGraph2.size(), 183831L);
@@ -20,7 +20,7 @@ TEST(GraphTests, parseSampleGraph2) {
 
 TEST(GraphTests, QDGraphConstrucionEmptySample1) {
   compress::GraphParser parser('#', ' ');
-  compress::Graph sampleGraph1 = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_1.txt");
+  compress::Graph sampleGraph1 = parser.parseFromFile("../graphs/sample_graph_1.txt");
 
   ASSERT_TRUE(sampleGraph1.order() != 0);
   ASSERT_TRUE(sampleGraph1.size() != 0);
@@ -33,7 +33,7 @@ TEST(GraphTests, QDGraphConstrucionEmptySample1) {
 
 TEST(GraphTests, QDConstructionThreeVerticesSample1) {
   compress::GraphParser parser('#', ' ');
-  compress::Graph sampleGraph1 = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_1.txt");
+  compress::Graph sampleGraph1 = parser.parseFromFile("../graphs/sample_graph_1.txt");
 
   ASSERT_TRUE(sampleGraph1.order() != 0);
   ASSERT_TRUE(sampleGraph1.size() != 0);
@@ -59,7 +59,7 @@ TEST(GraphTests, QDConstructionThreeVerticesSample1) {
 
 TEST(GraphTests, QDConstructionAllVertices) {
   compress::GraphParser parser('#', ' ');
-  compress::Graph sampleGraph1 = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_1.txt");
+  compress::Graph sampleGraph1 = parser.parseFromFile("../graphs/sample_graph_1.txt");
 
   ASSERT_TRUE(sampleGraph1.order() != 0);
   ASSERT_TRUE(sampleGraph1.size() != 0);

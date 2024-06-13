@@ -11,7 +11,7 @@
 
 TEST(ReorderTests, ReorderSample1) {
   compress::GraphParser parser('#', '\t');
-  compress::Graph sampleGraph1 = parser.parseFromFile("/home/felix/Documents/University/Semester 4/Proseminar/Code/test/sample_graph_2.txt");
+  compress::Graph sampleGraph1 = parser.parseFromFile("../graphs/sample_graph_2.txt");
   compress::CLILogger logger;
   compress::Reorderer reorder(std::make_unique<compress::RandomBiPartioner>(), logger); 
 
