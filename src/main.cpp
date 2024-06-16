@@ -108,10 +108,9 @@ double calculateBiMLogACost(Order vertexOrder, const Graph& toCalculateFor) {
               });
 
     for (long k = 0; k < neighbours.size() - 1; k++) {
-      gaps++;
+      gaps += 2;
       BiMLogACost += std::floor(std::log2(neighbours[k + 1].second -
-                                          neighbours[k].second)) +
-                     1;
+                                          neighbours[k].second)) + 1;
     }
   }
 
@@ -122,7 +121,6 @@ bool verifyOrder(Order vertexOrder) {
   std::unordered_set<long> seenOrderValues;
   std::vector<long> duplicates;
   bool valid = true;
-  ;
 
   for (auto& [vertex, orderVal] : vertexOrder) {
     if (seenOrderValues.contains(orderVal)) {
@@ -139,13 +137,11 @@ bool verifyOrder(Order vertexOrder) {
 }  // namespace compress
 
 int main() {
-  compress::CLILogger logger;
+  compress::CLILogger logger(50, 2000);
   compress::GraphParser parser('#', '\t');
 
   auto begin = std::chrono::steady_clock::now();
-  compress::Graph graph = parser.parseFromFile(
-      "/home/felix/Documents/University/Semester "
-      "4/Proseminar/Code/test/sample_graph_2.txt");
+  compress::Graph graph = parser.parseFromFile("../graphs/sample_graph_2.txt");
   auto end = std::chrono::steady_clock::now();
 
   auto ToVertexSet = [&]() {
@@ -162,7 +158,7 @@ int main() {
   auto vertexOrder = reorderer.reorder(qd, 1, qd.getDataVertices().size());
 
   // how to compute compression cost
-  std::cout << "Order is valid: " << compress::verifyOrder(vertexOrder) << '\n';
+  std::cout << "\nOrder is valid: " << compress::verifyOrder(vertexOrder) << '\n';
   std::cout << "BiMLogACost: "
             << compress::calculateBiMLogACost(vertexOrder, qd) << '\n';
 }

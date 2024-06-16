@@ -2,11 +2,6 @@
 .cache/
 build/
 
-# Ignore test graphs
-test/sample_graph_1.txt
-test/sample_graph_2.txt
-test/sample_graph_3.txt
-
 # Ignore notes
 TODO
 
