@@ -6,6 +6,7 @@ add_executable(
   partitioner.cpp
   algorithm.cpp 
   logger.cpp
+  utility.cpp
 )
 
 add_library(
@@ -20,6 +21,8 @@ add_library(
   algorithm.cpp 
   logger.hpp
   logger.cpp
+  utility.hpp
+  utility.cpp
 )
 
 set_target_properties(bpalgolib PROPERTIES LINKER_LANGUAGE CXX)

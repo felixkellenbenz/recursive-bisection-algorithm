@@ -2,64 +2,75 @@
 
 #include <cstddef>
 #include <list>
-#include <string>
 #include <unordered_map>
-#include <unordered_set>
-#include <vector>
+
+#include "utility.hpp"
+
+template<>
+struct std::hash<compress::Vertex> {
+  
+  std::size_t operator()(const compress::Vertex& vertex) const {
+    std::size_t IDHash = std::hash<long>{}(vertex.vertexID);
+    std::size_t TypeHash = std::hash<compress::Vertex::Type>{}(vertex.vertexType); 
+    std::size_t firstCombine =  0 ^ IDHash + 0x9e3779b9 + (1 << 6) + (1 >> 2);
+    return firstCombine ^ (TypeHash + 0x9e3779b9 + (1 << 6) + (1 >> 2));
+  }
+};
 
 namespace compress {
-
-typedef long Vertex;
-typedef std::pair<Vertex, Vertex> Edge;
-typedef std::unordered_set<Vertex> VertexSet;
-typedef std::unordered_map<Vertex, long> Order;
 
 class Graph {
  protected:
   mutable std::unordered_map<Vertex, std::list<Vertex>> adjacencyList;
-  std::size_t numberOfEdges;
-
-  bool hasEdge(const Edge& searchedEdge) const;
+  bool directed;
 
  public:
   typedef std::unordered_map<Vertex, std::list<Vertex>>::iterator iterator;
 
-  Graph() : adjacencyList(), numberOfEdges(0) {}
+  explicit Graph(bool _directed = false) : adjacencyList(), directed(_directed) {} 
+  Graph(const Graph&) = default;
+  Graph(Graph&&) = default;
+  Graph& operator=(const Graph&) = default;
+  Graph& operator=(Graph&&) = default; 
+  virtual ~Graph() noexcept {} 
 
-  bool addEdge(const Edge& newEdge);
-
-  std::vector<Vertex> vertices() const;
+  [[nodiscard]] VertexSet virtual vertices() const;
   std::list<Vertex> neighbours(const Vertex& v) const;
 
-  std::size_t virtual order() const { return adjacencyList.size(); }
-  std::size_t virtual size() const { return numberOfEdges; }
+  [[nodiscard]] std::size_t virtual order() const { return adjacencyList.size(); }
+  [[nodiscard]] std::size_t size() const;
+
+  bool virtual addEdge(const Edge& newEdge);
+  bool isDirected() const { return directed; }
 
   iterator begin() const { return adjacencyList.begin(); };
   iterator end() const { return adjacencyList.end(); }
-
-  std::string toString() const;
 };
 
-// improve QD Graph model
 class QDGraph : public Graph {
- private:
-  VertexSet queryVertices;
-  VertexSet dataVertices;
+private:
+  VertexSet queryVertexSet;
+  VertexSet dataVertexSet;
 
- public:
-  QDGraph() : Graph(), queryVertices(), dataVertices() {}
-  QDGraph(VertexSet queryVertices, VertexSet dataVertices,
-          const Graph& original);
+public: 
+  QDGraph() : queryVertexSet(), dataVertexSet() {}
+  explicit QDGraph(const Graph&);
+  QDGraph(const VertexSet&, const VertexSet&, const QDGraph&);
+  QDGraph(const QDGraph&) = default;
+  QDGraph(QDGraph&&) = default;
+  QDGraph& operator=(const QDGraph&) = default;
+  QDGraph& operator=(QDGraph&&) = default;
+  ~QDGraph() noexcept {}
+ 
+  [[nodiscard]] VertexSet vertices() const override;
+  [[nodiscard]] std::size_t order() const override { return queryVertexSet.size() + dataVertexSet.size(); }
 
-  std::size_t order() const override {
-    return dataVertices.size() + queryVertices.size();
-  }
-  std::size_t size() const override { return numberOfEdges * 2; }
+  VertexSet dataVertices() const;
+  VertexSet queryVertices() const;
+  std::size_t numberOfDataVertices() const { return dataVertexSet.size(); }
+  std::size_t numberOfQueryVertices() const { return queryVertexSet.size(); } 
 
-  std::size_t dataOrder() const { return dataVertices.size(); }
-  std::size_t queryOrder() const { return queryVertices.size(); }
-
-  VertexSet getDataVertices() const { return dataVertices; }
-  VertexSet getQueryVertices() const { return queryVertices; };
+  bool addEdge(const Edge& newEdge) override; 
 };
+
 }  // namespace compress

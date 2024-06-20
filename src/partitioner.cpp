@@ -12,7 +12,7 @@ std::pair<VertexSet, VertexSet> RandomBiPartioner::bisect(
     const QDGraph& toBisect) {
   VertexSet firstSet = {};
   VertexSet secondSet = {};
-  long upperboundFloored = toBisect.dataOrder() >> 1;
+  long upperboundFloored = toBisect.numberOfDataVertices() >> 1;
 
   std::random_device seed;
   std::default_random_engine engine(seed());
@@ -25,15 +25,15 @@ std::pair<VertexSet, VertexSet> RandomBiPartioner::bisect(
     return vertexVector;
   };
 
-  std::vector<Vertex> vertecies = AsVertexVector(toBisect.getDataVertices());
+  std::vector<Vertex> vertices = AsVertexVector(toBisect.dataVertices());
 
-  std::shuffle(vertecies.begin(), vertecies.end(), engine);
+  std::shuffle(vertices.begin(), vertices.end(), engine);
 
   for (long i = 0; i < upperboundFloored; ++i)
-    firstSet.insert(std::move(vertecies[i]));
+    firstSet.insert(std::move(vertices[i]));
 
-  for (long i = upperboundFloored; i < vertecies.size(); ++i)
-    secondSet.insert(std::move(vertecies[i]));
+  for (long i = upperboundFloored; i < vertices.size(); ++i)
+    secondSet.insert(std::move(vertices[i]));
 
   return {firstSet, secondSet};
 }

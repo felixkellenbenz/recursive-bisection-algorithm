@@ -1,83 +1,140 @@
-#include <climits>
-#include <sstream>
-#include <utility>
-#include <vector>
+#include <cstddef>
+#include <string>
 
 #include "graph.hpp"
+#include "exception.hpp"
+#include "utility.hpp"
 
 namespace compress {
 
-bool Graph::hasEdge(const Edge& searchedEdge) const {
-  auto firstVertexLookup = adjacencyList.find(searchedEdge.first);
-  auto secondVertexLookup = adjacencyList.find(searchedEdge.second);
+bool checkVertexTypeInSet(const VertexSet& checkSet, Vertex::Type expectedType) {
+  for (auto& vertex : checkSet) {
+    if (vertex.vertexType != expectedType)
+      return false;
+  }
 
-  // refactor with lamda
-  bool firstToSecond = false;
-  bool secondToFirst = false;
-
-  if (firstVertexLookup == adjacencyList.end()) return false;
-
-  for (const auto& neighbourVertex : firstVertexLookup->second)
-    if (neighbourVertex == searchedEdge.second) return firstToSecond = true;
-
-  if (secondVertexLookup == adjacencyList.end()) return false;
-
-  for (const auto& neighbourVertex : secondVertexLookup->second)
-    if (neighbourVertex == searchedEdge.first) return secondToFirst = true;
-
-  return secondToFirst && firstToSecond;
-}
-
-bool Graph::addEdge(const Edge& newEdge) {
-  if (hasEdge(newEdge)) return false;
-
-  adjacencyList[newEdge.first].push_back(newEdge.second);
-  adjacencyList[newEdge.second].push_back(newEdge.first);
-
-  numberOfEdges += 1;
   return true;
 }
 
+std::string vertexTypeToString(const Vertex::Type& type) {
+  switch(type) {
+    case Vertex::Type::NONE: 
+      return "NONE";
+    case Vertex::Type::DATA:
+      return "DATA";
+    case Vertex::Type::QUERY:
+      return "QUERY";
+  }
+}
+
+bool hasEdge(const Edge& searchedEdge, const Graph& toSearchIn)  {
+  auto NeighborChecker = [&](const Vertex& start, const Vertex& end) {
+    auto lookup = toSearchIn.neighbours(start);
+
+    if (!lookup.size()) return false;
+
+    for (const auto& neighbourVertex : lookup)
+      if (neighbourVertex == end) return true;
+
+     return false;
+  };
+
+  bool firstToSecond = NeighborChecker(searchedEdge.first, searchedEdge.second); 
+  bool secondToFirst = NeighborChecker(searchedEdge.second, searchedEdge.first);
+  bool foundEdge = toSearchIn.isDirected() ? firstToSecond : firstToSecond && secondToFirst;
+
+  return foundEdge;
+}
+
+[[nodiscard]] VertexSet Graph::vertices() const {
+  VertexSet vertices;
+
+  for (auto& [vertex, neighbors] : adjacencyList)
+    vertices.insert(vertex); 
+
+  return vertices;
+}
+
 std::list<Vertex> Graph::neighbours(const Vertex& v) const {
-  return adjacencyList.find(v) != adjacencyList.end() ? adjacencyList[v]
-                                                      : std::list<Vertex>();
+  if (adjacencyList.find(v) != adjacencyList.end())
+    return adjacencyList.find(v)->second;
+
+  return std::list<Vertex>{}; 
 }
 
-std::string Graph::toString() const {
-  std::stringstream builder;
+[[nodiscard]] std::size_t Graph::size() const {
+  std::size_t graphSize = 0;
+  
+  for (auto& [vertex, neighbours] : adjacencyList)
+    graphSize += neighbours.size();
 
-  for (auto& [vertex, neigbours] : adjacencyList) {
-    for (auto& neigbour : neigbours) {
-      builder << vertex << " --> " << neigbour << '\n';
+  return graphSize >> 1;
+}
+
+bool Graph::addEdge(const Edge& newEdge) {
+  if (hasEdge(newEdge, *this)) return false;
+
+  adjacencyList[newEdge.first].push_back(newEdge.second);
+  if (!directed)
+    adjacencyList[newEdge.second].push_back(newEdge.first);
+
+  return true;
+}
+
+QDGraph::QDGraph(const Graph& constructFrom) 
+  : Graph(), queryVertexSet(), dataVertexSet() {
+   
+  for (auto& [vertex, neighbors] : constructFrom) {
+    Vertex queryVertex{vertex.vertexID, Vertex::Type::QUERY};
+    Vertex dataVertex{vertex.vertexID, Vertex::Type::DATA};
+    for (auto& neighbor : neighbors) {
+      this->adjacencyList[queryVertex].push_back(dataVertex);
+      this->adjacencyList[dataVertex].push_back(queryVertex);
     }
-  }
-
-  return builder.str();
+    
+    queryVertexSet.insert(queryVertex);
+    dataVertexSet.insert(dataVertex);
+  } 
 }
 
-std::vector<Vertex> Graph::vertices() const {
-  std::vector<Vertex> vertecies;
-
-  for (auto& [vertex, neigbour] : adjacencyList) vertecies.push_back(vertex);
-
-  return vertecies;
+QDGraph::QDGraph(const VertexSet& _queryVertexSet, const VertexSet& _dataVertexSet, const QDGraph& constructFrom)
+  : queryVertexSet(_queryVertexSet), dataVertexSet(_dataVertexSet) {
+  
+  if (!checkVertexTypeInSet(queryVertexSet, Vertex::Type::QUERY) 
+      || !checkVertexTypeInSet(dataVertexSet, Vertex::Type::DATA)) {
+    throw WrongVertexTypeException{"There is a vertex in a set that does not have the required type"};
+  }
+  
+  for (auto& [vertex, neighbors] : constructFrom) {
+    for (auto& neighbor : neighbors) {
+       if ((queryVertexSet.contains(vertex) && dataVertexSet.contains(neighbor)) 
+          || (queryVertexSet.contains(neighbor) && dataVertexSet.contains(vertex))) 
+       this->adjacencyList[vertex].push_back(neighbor); 
+    } 
+  }
 }
 
-QDGraph::QDGraph(VertexSet _queryVertices, VertexSet _dataVertices,
-                 const Graph& original)
-    : Graph(),
-      queryVertices(std::move(_queryVertices)),
-      dataVertices(std::move(_dataVertices)) {
-  for (auto& [vertex, neigbours] : original) {
-    for (auto& neigbour : neigbours) {
-      if (dataVertices.contains(neigbour) && queryVertices.contains(neigbour) &&
-          dataVertices.contains(vertex) && queryVertices.contains(vertex) &&
-          !hasEdge({vertex, neigbour})) {
-        adjacencyList[vertex].push_back(neigbour);
-        adjacencyList[neigbour].push_back(vertex);
-        numberOfEdges += 1;
-      }
-    }
-  }
+[[nodiscard]] VertexSet QDGraph::vertices() const {
+  VertexSet vertices;
+
+  for (auto& vertex : queryVertexSet)
+    vertices.insert(vertex);
+
+  for (auto& vertex : dataVertexSet)
+    vertices.insert(vertex);
+   
+  return vertices;
+}
+
+VertexSet QDGraph::dataVertices() const {
+  return dataVertexSet;
+}
+
+VertexSet QDGraph::queryVertices() const {
+  return queryVertexSet;
+}
+
+bool QDGraph::addEdge(const Edge& newEdge) {
+  return true;
 }
 }  // namespace compress

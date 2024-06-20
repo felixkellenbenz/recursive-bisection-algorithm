@@ -34,8 +34,8 @@ int countNeighboursInSet(Vertex toCountFor, const VertexSet& countIn,
   return numberOfNeighbours;
 }
 
-void swapTwoVertices(VertexSet& first, VertexSet& second, Vertex inFirst,
-                     Vertex inSecond) {
+void swapTwoVertices(VertexSet& first, VertexSet& second, const Vertex& inFirst,
+                     const Vertex& inSecond) {
   first.erase(inFirst);
   second.erase(inSecond);
   second.insert(inFirst);
@@ -145,7 +145,7 @@ std::pair<VertexSet, VertexSet> Reorderer::bisect(std::pair<VertexSet, VertexSet
 
 Order Reorderer::reorder(const QDGraph& toReorder, long begin, long end) {
   Order vertexOrder;
-  actionLogger.logReorderingSubgraph(toReorder.dataOrder());
+  actionLogger.logReorderingSubgraph(toReorder.numberOfDataVertices());
   auto partition = partitionStrategy->bisect(toReorder);
   bool recursionEnd = false;
 
@@ -155,8 +155,8 @@ Order Reorderer::reorder(const QDGraph& toReorder, long begin, long end) {
     }
   };
 
-  if (toReorder.dataOrder() == 1) {
-    auto dataVertices = toReorder.getDataVertices();
+  if (toReorder.numberOfDataVertices() == 1) {
+    auto dataVertices = toReorder.dataVertices();
     vertexOrder[*dataVertices.begin()] = begin;
     recursionEnd = true;
   }
@@ -167,9 +167,9 @@ Order Reorderer::reorder(const QDGraph& toReorder, long begin, long end) {
     // calculate suborders and glue them together
     long upper = begin + partition.first.size();
 
-    QDGraph firstSubgraph(toReorder.getQueryVertices(), partition.first,
+    QDGraph firstSubgraph(toReorder.queryVertices(), partition.first,
                           toReorder);
-    QDGraph secondSubgraph(toReorder.getQueryVertices(), partition.second,
+    QDGraph secondSubgraph(toReorder.queryVertices(), partition.second,
                            toReorder);
 
     Order suborderOfFirst = reorder(firstSubgraph, begin, upper - 1);
