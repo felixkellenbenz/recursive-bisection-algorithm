@@ -5,7 +5,6 @@ add_executable(
   parser.cpp
   partitioner.cpp
   algorithm.cpp 
-  logger.cpp
   utility.cpp
 )
 
@@ -19,8 +18,6 @@ add_library(
   parser.cpp
   partitioner.cpp
   algorithm.cpp 
-  logger.hpp
-  logger.cpp
   utility.hpp
   utility.cpp
 )

@@ -11,7 +11,6 @@
 
 #include "algorithm.hpp"
 #include "graph.hpp"
-#include "logger.hpp"
 #include "parser.hpp"
 #include "partitioner.hpp"
 #include "utility.hpp"
@@ -75,7 +74,6 @@ bool verifyOrder(Order vertexOrder) {
 }  // namespace compress
 
 int main() {
-  compress::CLILogger logger(50, 2000);
   compress::GraphParser parser('#', '\t');
 
   auto begin = std::chrono::steady_clock::now();
@@ -83,9 +81,7 @@ int main() {
   auto end = std::chrono::steady_clock::now();
 
   compress::QDGraph qd(graph);
-  compress::Reorderer reorderer(std::make_unique<compress::RandomBiPartioner>(),
-                                logger);
-  logger.disableLogging();
+  compress::Reorderer reorderer(std::make_unique<compress::RandomBiPartioner>());
   auto vertexOrder = reorderer.reorder(qd, 1, qd.numberOfDataVertices());
 
   // how to compute compression cost

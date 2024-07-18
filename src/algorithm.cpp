@@ -89,8 +89,6 @@ std::pair<VertexSet, VertexSet> Reorderer::bisect(std::pair<VertexSet, VertexSet
 
   for (long i = 0; swapped && i < 20; i++) {
     swapped = false;
-    std::string iterationLog =  "\nIteration: " + std::to_string(i + 1);
-    actionLogger.log(iterationLog);
 
     auto MoveGainsArrayCreator = [&](const VertexSet& createFrom, long indexOffset) {
       std::vector<std::pair<Vertex, double>> moveGainsArray;
@@ -99,7 +97,6 @@ std::pair<VertexSet, VertexSet> Reorderer::bisect(std::pair<VertexSet, VertexSet
 
       for (long i = 0;
            i < createFrom.size() && createFromIter != createFrom.end(); i++) {
-        actionLogger.logComputingGainsForith(i + indexOffset, graphSize);
         double moveGain =
             utility::computeMoveGain(*createFromIter, partition.first, partition.second, toReorder);
         moveGainsArray.push_back({*createFromIter, moveGain});
@@ -108,7 +105,6 @@ std::pair<VertexSet, VertexSet> Reorderer::bisect(std::pair<VertexSet, VertexSet
       return moveGainsArray;
     };
 
-    actionLogger.log("Computing Move Gains...");
     std::vector<std::pair<Vertex, double>> moveGainsForFirstPart =
         MoveGainsArrayCreator(partition.first, 0);
     std::vector<std::pair<Vertex, double>> moveGainsForSecondPart =
@@ -128,8 +124,7 @@ std::pair<VertexSet, VertexSet> Reorderer::bisect(std::pair<VertexSet, VertexSet
     auto secPartIt = moveGainsForSecondPart.begin();
 
     for (; firstPartIt != moveGainsForFirstPart.end() &&
-           secPartIt != moveGainsForSecondPart.end();) {
-      if (firstPartIt->second + secPartIt->second > 0) {
+           secPartIt != moveGainsForSecondPart.end();) { if (firstPartIt->second + secPartIt->second > 0) {
         utility::swapTwoVertices(partition.first, partition.second, firstPartIt->first, secPartIt->first);
         swapped = true;
         firstPartIt++;
@@ -145,7 +140,6 @@ std::pair<VertexSet, VertexSet> Reorderer::bisect(std::pair<VertexSet, VertexSet
 
 Order Reorderer::reorder(const QDGraph& toReorder, long begin, long end) {
   Order vertexOrder;
-  actionLogger.logReorderingSubgraph(toReorder.numberOfDataVertices());
   auto partition = partitionStrategy->bisect(toReorder);
   bool recursionEnd = false;
 
