@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <memory>
-#include <string>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -17,16 +16,14 @@
 
 namespace compress {
 
-double calculateBiMLogACost(Order vertexOrder, const Graph& toCalculateFor) {
+double calculateBiMLogACost(const Order& vertexOrder, const QDGraph& toCalculateFor) {
   std::unordered_map<Vertex, std::vector<std::pair<Vertex, long>>>
       adjacencyListWithOrder;
 
-  for (auto& [vertex, neighbours] : toCalculateFor) {
-    adjacencyListWithOrder[vertex] =
-        std::vector<std::pair<compress::Vertex, long>>();
-    for (auto& neihgbour : neighbours) {
-      adjacencyListWithOrder[vertex].push_back(
-          {neihgbour, vertexOrder[neihgbour]});
+
+  for (auto& vertex : toCalculateFor.queryVertices()) { 
+    for (auto& neighbor : toCalculateFor.neighbours(vertex)) {
+      adjacencyListWithOrder[vertex].push_back({neighbor, vertexOrder.at(neighbor)});
     }
   }
 
@@ -34,9 +31,6 @@ double calculateBiMLogACost(Order vertexOrder, const Graph& toCalculateFor) {
   long gaps = 0;
 
   for (auto& [vertex, neighbours] : adjacencyListWithOrder) {
-
-    if (vertex.vertexType != Vertex::Type::QUERY) 
-      continue;
 
     std::sort(neighbours.begin(), neighbours.end(),
               [](std::pair<compress::Vertex, long>& lhs,
@@ -46,29 +40,28 @@ double calculateBiMLogACost(Order vertexOrder, const Graph& toCalculateFor) {
 
     for (long k = 0; k < neighbours.size() - 1; k++) {
       gaps += 1;
-      BiMLogACost += std::floor(std::log2(neighbours[k + 1].second -
-                                          neighbours[k].second)) + 1;
+      double difference = neighbours[k + 1].second - neighbours[k].second;
+      BiMLogACost += std::floor(std::log2(difference) + 1);
     }
   }
 
-  return BiMLogACost / (gaps + adjacencyListWithOrder.size());
+  return BiMLogACost / gaps;
 }
 
-bool verifyOrder(Order vertexOrder) {
+bool verifyOrder(const Order& vertexOrder) {
   std::unordered_set<long> seenOrderValues;
-  std::vector<long> duplicates;
+  std::unordered_set<compress::Vertex> duplicates;
   bool valid = true;
 
   for (auto& [vertex, orderVal] : vertexOrder) {
     if (seenOrderValues.contains(orderVal)) {
-      duplicates.push_back(orderVal);
-      valid = false;
+      duplicates.insert(orderVal);
     }
 
     seenOrderValues.insert(orderVal);
   }
 
-  return valid;
+  return !duplicates.size();
 }
 
 }  // namespace compress

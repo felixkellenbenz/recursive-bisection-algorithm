@@ -81,6 +81,8 @@ bool Graph::addEdge(const Edge& newEdge) {
   return true;
 }
 
+// Something with parsing a qdgraph does not work
+// Somehow edges get multiplied
 QDGraph::QDGraph(const Graph& constructFrom) 
   : Graph(), queryVertexSet(), dataVertexSet() {
    
@@ -88,8 +90,11 @@ QDGraph::QDGraph(const Graph& constructFrom)
     Vertex queryVertex{vertex.vertexID, Vertex::Type::QUERY};
     Vertex dataVertex{vertex.vertexID, Vertex::Type::DATA};
     for (auto& neighbor : neighbors) {
-      this->adjacencyList[queryVertex].push_back(dataVertex);
-      this->adjacencyList[dataVertex].push_back(queryVertex);
+      Vertex neighborAsQuery{neighbor.vertexID, Vertex::Type::QUERY};
+      Vertex neighborAsData{neighbor.vertexID, Vertex::Type::DATA};
+
+      this->adjacencyList[queryVertex].push_back(neighborAsData);
+      this->adjacencyList[dataVertex].push_back(neighborAsQuery);
     }
     
     queryVertexSet.insert(queryVertex);
