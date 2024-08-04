@@ -23,7 +23,6 @@ struct Vertex {
 
 bool operator==(const Vertex&, const Vertex&);
 
-
 typedef std::pair<Vertex, Vertex> Edge;
 typedef std::unordered_set<Vertex> VertexSet;
 typedef std::unordered_map<Vertex, long> Order;

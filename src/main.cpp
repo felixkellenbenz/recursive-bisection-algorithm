@@ -50,27 +50,24 @@ double calculateBiMLogACost(const Order& vertexOrder, const QDGraph& toCalculate
 
 bool verifyOrder(const Order& vertexOrder) {
   std::unordered_set<long> seenOrderValues;
-  std::unordered_set<compress::Vertex> duplicates;
   bool valid = true;
 
   for (auto& [vertex, orderVal] : vertexOrder) {
     if (seenOrderValues.contains(orderVal)) {
-      duplicates.insert(orderVal);
+      return false;
     }
-
-    seenOrderValues.insert(orderVal);
   }
 
-  return !duplicates.size();
+  return true;
 }
 
 }  // namespace compress
 
 int main() {
-  compress::GraphParser parser('#', '\t');
+  compress::GraphParser parser('#', ' ');
 
   auto begin = std::chrono::steady_clock::now();
-  compress::Graph graph = parser.parseFromFile("../graphs/sample_graph_2.txt");
+  compress::Graph graph = parser.parseFromFile("../graphs/sample_graph_5.txt");
   auto end = std::chrono::steady_clock::now();
 
   compress::QDGraph qd(graph);
