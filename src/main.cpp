@@ -13,6 +13,7 @@
 #include "parser.hpp"
 #include "partitioner.hpp"
 #include "utility.hpp"
+#include "interface.hpp"
 
 namespace compress {
 
@@ -63,18 +64,22 @@ bool verifyOrder(const Order& vertexOrder) {
 
 }  // namespace compress
 
-int main() {
+int main(int argc, char** argv) {
   compress::GraphParser parser('#', ' ');
+  std::vector<std::string> arguements;
+ 
+  for (int i = 1; i < argc; i++) 
+    arguements.push_back(std::string{argv[i]});
 
-  auto begin = std::chrono::steady_clock::now();
-  compress::Graph graph = parser.parseFromFile("../graphs/sample_graph_5.txt");
-  auto end = std::chrono::steady_clock::now();
+  compress::CLIArgumentParser argumentParser{arguements}; 
+  compress::Configuration config = argumentParser.parseConfiguration(); 
 
+  compress::Graph graph = parser.parseFromFile(config.graphPath);
   compress::QDGraph qd(graph);
+
   compress::Reorderer reorderer(std::make_unique<compress::RandomBiPartioner>());
   auto vertexOrder = reorderer.reorder(qd, 1, qd.numberOfDataVertices());
 
-  // how to compute compression cost
   std::cout << "\nOrder is valid: " << compress::verifyOrder(vertexOrder) << '\n';
   std::cout << "BiMLogACost: "
             << compress::calculateBiMLogACost(vertexOrder, qd) << '\n';
