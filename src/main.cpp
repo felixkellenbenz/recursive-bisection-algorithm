@@ -65,6 +65,8 @@ bool verifyOrder(const Order& vertexOrder) {
 }  // namespace compress
 
 int main(int argc, char** argv) {
+  
+  // include seperation characters in cli
   compress::GraphParser parser('#', ' ');
   std::vector<std::string> arguements;
  

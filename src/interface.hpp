@@ -18,15 +18,10 @@ namespace compress  {
 
     Configuration() {}
    
-    // deep copy polymorphic type using clone() method 
-    Configuration(const Configuration& rhs) {
-        
-
-
-    }
-
-
-    Configuration(Configuration&&) = default;
+    // deep copy polymorphic type using clone() method.
+    // do we even need to deep copy them they have no data ?
+    Configuration(const Configuration& rhs) : partitioningStrategy(rhs.partitioningStrategy->clone()),
+    graphPath(rhs.graphPath), recursionDepth(rhs.recursionDepth) { }
   };
 
 
@@ -44,9 +39,6 @@ namespace compress  {
       CLIArgumentParser() : lastConfiguration(), arguments(), argumentsProcessed(0) {}
       explicit CLIArgumentParser(std::vector<std::string> _arguments) : lastConfiguration(),
       arguments(std::move(_arguments)), argumentsProcessed(arguments.size()) {} 
-
-      CLIArgumentParser(const CLIArgumentParser&);
-      
 
       Configuration parseConfiguration();
       void newArgument(const std::string& newArgument) {arguments.push_back(newArgument);}

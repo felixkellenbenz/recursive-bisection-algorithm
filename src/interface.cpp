@@ -40,7 +40,7 @@ namespace compress  {
           throw ParsingException("The --strategy or -s flag needs an argument");
         }
 
-        auto value = arguments[i + 1];
+        auto value = arguments[++i];
 
         if (value.empty() || value[0] == '-') {
           throw ParsingException("The --strategy or -s flag needs an argument");
@@ -56,7 +56,7 @@ namespace compress  {
           throw ParsingException("The --rec-depth or -r flag requires an argument"); 
         }
 
-        auto value = arguments[i + 1];
+        auto value = arguments[++i];
 
         if (value.find_first_not_of(numberChars) != std::string_view::npos) {
           throw ParsingException("The --rec-depth or -r flag requires a number as an argument");
@@ -71,7 +71,7 @@ namespace compress  {
           throw ParsingException("The --path or -p flag requires an argument");
         }
 
-        auto value = arguments[i + 1];
+        auto value = arguments[++i];
         
         std::filesystem::path asPath{value};
 

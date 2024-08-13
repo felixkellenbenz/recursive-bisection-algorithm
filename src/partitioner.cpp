@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cmath>
+#include <memory>
 #include <random>
 #include <vector>
 
@@ -37,4 +38,9 @@ std::pair<VertexSet, VertexSet> RandomBiPartioner::bisect(
 
   return {firstSet, secondSet};
 }
+
+std::unique_ptr<BiPartitioner> RandomBiPartioner::clone() {
+  return std::make_unique<RandomBiPartioner>();
+}
+
 }  // namespace compress
