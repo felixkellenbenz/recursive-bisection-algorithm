@@ -64,7 +64,7 @@ bool verifyOrder(const Order& vertexOrder) {
 
 int main(int argc, char** argv) {
   
-  // include seperation characters in cli
+  // TODO: include seperation characters as program arguments
   compress::GraphParser parser('#', ' ');
   std::vector<std::string> arguements;
  
@@ -80,7 +80,5 @@ int main(int argc, char** argv) {
   compress::Reorderer reorderer(std::make_unique<compress::RandomBiPartioner>());
   auto vertexOrder = reorderer.reorder(qd, 1, qd.numberOfDataVertices());
 
-  std::cout << "\nOrder is valid: " << compress::verifyOrder(vertexOrder) << '\n';
-  std::cout << "BiMLogACost: "
-            << compress::calculateBiMLogACost(vertexOrder, qd) << '\n';
+
 }
