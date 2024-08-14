@@ -1,6 +1,5 @@
-add_executable(
-  bpalgo
-  main.cpp
+add_library(
+  bpasrclib 
   graph.cpp
   parser.cpp
   partitioner.cpp
@@ -8,5 +7,4 @@ add_executable(
   interface.cpp
 )
 
-
-target_link_libraries(bpalgo PUBLIC bpalgolib)
+target_link_libraries(bpasrclib PUBLIC bpaheaderlib)

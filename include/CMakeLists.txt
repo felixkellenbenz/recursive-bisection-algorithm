@@ -1,5 +1,5 @@
 add_library(
-  bpalgolib
+  bpaheaderlib
   graph.hpp
   parser.hpp
   partitioner.hpp
@@ -7,6 +7,6 @@ add_library(
   interface.hpp
 )
 
-set_target_properties(bpalgolib PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(bpaheaderlib PROPERTIES LINKER_LANGUAGE CXX)
 
-target_include_directories(bpalgolib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/")
+target_include_directories(bpaheaderlib PUBLIC "~/Documents/Code/BP/include")
