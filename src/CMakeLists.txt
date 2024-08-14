@@ -5,22 +5,19 @@ add_executable(
   parser.cpp
   partitioner.cpp
   algorithm.cpp 
-  utility.cpp
   interface.cpp
 )
 
 add_library(
   bpalgolib
-  graph.hpp
-  parser.hpp
+  partitioner.cpp
   partitioner.hpp
+  algorithm.cpp 
   algorithm.hpp
   graph.cpp
+  graph.hpp
   parser.cpp
-  partitioner.cpp
-  algorithm.cpp 
-  utility.hpp
-  utility.cpp
+  parser.hpp
   interface.hpp
   interface.cpp
 )

@@ -1,5 +1,4 @@
 #include "graph.hpp"
-#include "utility.hpp"
 
 #include <gtest/gtest.h>
 

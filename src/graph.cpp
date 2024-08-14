@@ -3,9 +3,12 @@
 
 #include "graph.hpp"
 #include "exception.hpp"
-#include "utility.hpp"
 
 namespace compress {
+
+bool operator==(const Vertex& lhs, const Vertex& rhs) {
+  return lhs.vertexID == rhs.vertexID && lhs.vertexType == rhs.vertexType;
+}
 
 bool checkVertexTypeInSet(const VertexSet& checkSet, Vertex::Type expectedType) {
   for (auto& vertex : checkSet) {

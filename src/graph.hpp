@@ -3,8 +3,36 @@
 #include <cstddef>
 #include <list>
 #include <unordered_map>
+#include <unordered_set>
+#include <cstddef>
 
-#include "utility.hpp"
+
+namespace compress {
+
+struct Vertex {
+
+  enum class Type {
+    NONE,
+    QUERY,
+    DATA
+  };
+
+  long vertexID;
+  Type  vertexType;
+
+  Vertex(long _vertexID) : vertexID(_vertexID), vertexType(Type::NONE) {}
+  Vertex(long _vertexID, Type _vertexType) : vertexID(_vertexID), vertexType(_vertexType) {}
+
+};
+
+bool operator==(const Vertex&, const Vertex&);
+
+typedef std::pair<Vertex, Vertex> Edge;
+typedef std::unordered_set<Vertex> VertexSet;
+typedef std::unordered_map<Vertex, long> Order;
+
+} // namespace compress
+
 
 template<>
 struct std::hash<compress::Vertex> {
@@ -16,6 +44,7 @@ struct std::hash<compress::Vertex> {
     return firstCombine ^ (TypeHash + 0x9e3779b9 + (1 << 6) + (1 >> 2));
   }
 };
+
 
 namespace compress {
 

@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <chrono>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -12,7 +11,6 @@
 #include "graph.hpp"
 #include "parser.hpp"
 #include "partitioner.hpp"
-#include "utility.hpp"
 #include "interface.hpp"
 
 namespace compress {
