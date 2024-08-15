@@ -6,7 +6,6 @@
 #include <unordered_set>
 #include <cstddef>
 
-
 namespace compress {
 
 struct Vertex {
@@ -33,7 +32,8 @@ typedef std::unordered_map<Vertex, long> Order;
 
 } // namespace compress
 
-
+// maybe use boost hashcombine
+// introduce new header file so namespace compress is not ripped up
 template<>
 struct std::hash<compress::Vertex> {
   
@@ -57,16 +57,12 @@ class Graph {
   typedef std::unordered_map<Vertex, std::list<Vertex>>::iterator iterator;
 
   explicit Graph(bool _directed = false) : adjacencyList(), directed(_directed) {} 
-  Graph(const Graph&) = default;
-  Graph(Graph&&) = default;
-  Graph& operator=(const Graph&) = default;
-  Graph& operator=(Graph&&) = default; 
   virtual ~Graph() noexcept {} 
 
   [[nodiscard]] VertexSet virtual vertices() const;
   std::list<Vertex> neighbours(const Vertex& v) const;
 
-  [[nodiscard]] std::size_t virtual order() const { return adjacencyList.size(); }
+  std::size_t virtual order() const { return adjacencyList.size(); }
   [[nodiscard]] std::size_t size() const;
 
   bool virtual addEdge(const Edge& newEdge);
@@ -85,13 +81,9 @@ public:
   QDGraph() : queryVertexSet(), dataVertexSet() {}
   explicit QDGraph(const Graph&);
   QDGraph(const VertexSet&, const VertexSet&, const QDGraph&);
-  QDGraph(const QDGraph&) = default;
-  QDGraph(QDGraph&&) = default;
-  QDGraph& operator=(const QDGraph&) = default;
-  QDGraph& operator=(QDGraph&&) = default;
   ~QDGraph() noexcept {}
  
-  [[nodiscard]] VertexSet vertices() const override;
+  VertexSet vertices() const override;
   [[nodiscard]] std::size_t order() const override { return queryVertexSet.size() + dataVertexSet.size(); }
 
   VertexSet dataVertices() const;

@@ -143,6 +143,7 @@ Order Reorderer::reorder(const QDGraph& toReorder, long begin, long end) {
   auto partition = partitionStrategy->bisect(toReorder);
   bool recursionEnd = false;
 
+
   auto OrderCombiner = [&](const Order& toAdd) {
     for (auto& [vertex, orderValue] : toAdd) {
       vertexOrder[vertex] = orderValue;
@@ -158,7 +159,6 @@ Order Reorderer::reorder(const QDGraph& toReorder, long begin, long end) {
   if (!recursionEnd) {
     partition = bisect(partition, toReorder);
 
-    // calculate suborders and glue them together
     long upper = begin + partition.first.size();
 
     QDGraph firstSubgraph(toReorder.queryVertices(), partition.first,

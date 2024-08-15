@@ -20,4 +20,8 @@ public:
   WrongVertexTypeException (const std::string& msg) : std::runtime_error(msg) {}
 };
 
+class NullPointerException : public std::runtime_error {
+public:
+  NullPointerException(const std::string& msg) : std::runtime_error(msg) {}
+};
 }  // namespace compress
