@@ -5,6 +5,7 @@ add_library(
   partitioner.hpp
   algorithm.hpp
   interface.hpp
+  utility.hpp
 )
 
 set_target_properties(bpaheaderlib PROPERTIES LINKER_LANGUAGE CXX)

@@ -75,7 +75,7 @@ Configuration CLIArgumentParser::parseConfiguration() {
       
       std::filesystem::path asPath{value};
 
-      if (!asPath.has_filename()) {
+      if (std::filesystem::is_directory(asPath)) {
         throw ParsingException("The path that was given to --path or -p does not point to a file");
       }
       
