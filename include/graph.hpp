@@ -33,7 +33,6 @@ typedef std::unordered_map<Vertex, long> Order;
 } // namespace compress
 
 // maybe use boost hashcombine
-// introduce new header file so namespace compress is not ripped up
 template<>
 struct std::hash<compress::Vertex> {
   

@@ -4,8 +4,10 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include <fstream>
 
 #include "graph.hpp"
+#include "interface.hpp"
 
 namespace compress {
 namespace utility {
@@ -122,6 +124,17 @@ double computeMoveGain(Vertex toMove, const VertexSet& firstPart, VertexSet seco
   }
 
   return sum;
+}
+
+bool validateConfiguration(const Configuration& config) {
+ 
+  if (!config.partitioningStrategy)
+    return false;
+
+  if (!std::ifstream{config.graphPath}.good())
+    return false;
+
+  return true;
 }
 
 } // namespace utility

@@ -17,12 +17,24 @@ struct Configuration {
   char vertexSeparator = ' ';
   int recursionDepth = -1; 
 
-  Configuration() {}
+  Configuration() {} 
  
   // deep copy polymorphic type using clone() method.
   // do we even need to deep copy them they have no data ?
   Configuration(const Configuration& rhs) : partitioningStrategy(rhs.partitioningStrategy->clone()),
                                             graphPath(rhs.graphPath), recursionDepth(rhs.recursionDepth) {}
+  
+
+  Configuration& operator=(const Configuration& rhs) {
+    this->partitioningStrategy = rhs.partitioningStrategy->clone();
+    this->graphPath = rhs.graphPath;
+    this->vertexSeparator = rhs.vertexSeparator;
+    this->recursionDepth = rhs.recursionDepth;
+
+    return *this;
+  } 
+
+
 };
 
 class CLIArgumentParser {

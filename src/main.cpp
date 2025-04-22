@@ -1,38 +1,43 @@
-#include <cmath>
-#include <cstdlib>
-#include <exception>
+#include <cmath> 
+#include <cstdlib> 
 #include <iostream>
 #include <memory>
 #include <vector>
 
 #include "algorithm.hpp"
+#include "exception.hpp"
 #include "graph.hpp"
 #include "parser.hpp"
-#include "partitioner.hpp"
 #include "interface.hpp"
 
-int main(int argc, char** argv) {
-  
-  // TODO: include seperation characters as program arguments
-  compress::GraphParser parser('#', ' ');
+int main(int argc, char** argv) {  
   std::vector<std::string> arguements;
+
+  if (argc <= 1) {
+    std::cout << "Error: You need to specify a graph path\n";
+    std::exit(1);
+  }
  
   for (int i = 1; i < argc; i++) 
     arguements.push_back(std::string{argv[i]});
 
+  compress::Configuration config;
+  compress::Graph graph;
+
   try {
     compress::CLIArgumentParser argumentParser{arguements}; 
-    compress::Configuration config = argumentParser.parseConfiguration(); 
+    config = argumentParser.parseConfiguration(); 
 
-    compress::Graph graph = parser.parseFromFile(config.graphPath);
-    compress::QDGraph qd(graph);
+    compress::GraphParser parser(config.commentCharacter, config.vertexSeparator);
+    graph = parser.parseFromFile(config.graphPath);
 
+   } catch (compress::ParsingException e) {
+    std::cout << "Error: " << e.what() << "\n";
+    std::exit(1);
+   }
 
-    compress::Reorderer reorderer(std::make_unique<compress::RandomBiPartioner>());
-    auto vertexOrder = reorderer.reorder(qd, 1, qd.numberOfDataVertices());
+  compress::QDGraph qd(graph);
 
-  } catch (std::exception e) {
-    std::cout << "Error: " << e.what() << std::endl;
-  }
-
+  compress::Reorderer reorderer(*config.partitioningStrategy);
+  auto vertexOrder = reorderer.reorder(qd, 1, qd.numberOfDataVertices());
 }

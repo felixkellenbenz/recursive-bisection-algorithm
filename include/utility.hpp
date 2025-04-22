@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 #include "graph.hpp"
+#include "interface.hpp"
 
 namespace compress {
 namespace utility {
@@ -15,7 +16,7 @@ double computeGain(int neighboursInFirst, int neighboursInSecond, long sizeOfFir
 int countNeighboursInSet(Vertex toCountFor, const VertexSet& countIn, const std::list<Vertex>& neighbours);
 void swapTwoVertices(VertexSet& first, VertexSet& second, const Vertex& inFirst, const Vertex& inSecond);
 double computeMoveGain(Vertex toMove, const VertexSet& firstPart, VertexSet secondPart, const QDGraph& toReorder);
-
+bool validateConfiguration(const Configuration& config);
 
 
 } // namespace utility

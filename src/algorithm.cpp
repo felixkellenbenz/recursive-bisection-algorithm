@@ -67,7 +67,7 @@ std::pair<VertexSet, VertexSet> Reorderer::bisect(std::pair<VertexSet, VertexSet
 
 Order Reorderer::reorder(const QDGraph& toReorder, long begin, long end) {
   Order vertexOrder;
-  auto partition = partitionStrategy->bisect(toReorder);
+  auto partition = partitioningStrategy.bisect(toReorder);
   bool recursionEnd = false;
 
 
@@ -76,6 +76,11 @@ Order Reorderer::reorder(const QDGraph& toReorder, long begin, long end) {
       vertexOrder[vertex] = orderValue;
     }
   };
+
+  if (currentDepth < maxRecursionDepth && maxRecursionDepth >= 0) {
+    // assign all vertices in the current set a number  
+    recursionEnd = true;
+  }
 
   if (toReorder.numberOfDataVertices() == 1) {
     auto dataVertices = toReorder.dataVertices();
